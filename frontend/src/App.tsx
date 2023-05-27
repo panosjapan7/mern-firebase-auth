@@ -13,7 +13,9 @@ function App() {
   });
 
   console.log("logged in?", isLoggedIn);
-
+  const signOut = () => {
+    fire.auth().signOut();
+  };
   return (
     <div className="App">
       <Router>
@@ -24,7 +26,10 @@ function App() {
             </Routes>
           </>
         ) : (
-          <>Hello, World!!!</>
+          <>
+            <p>You are loggged in!!!</p>
+            <button onClick={signOut}>Sign out</button>
+          </>
         )}
       </Router>
     </div>

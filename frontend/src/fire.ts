@@ -1,4 +1,7 @@
-import firebase from "firebase/app";
+// import firebase from "firebase/app";
+// import "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,9 +16,12 @@ const firebaseConfig = {
 try {
   firebase.initializeApp(firebaseConfig);
 } catch (error: any) {
-  if (!/already exists/.test(error.message))
+  if (!/already exists/.test(error.message)) {
     console.log("Firebase initialization error", error.stack);
+  }
 }
 
-const fire = firebase;
-export default fire;
+// const fire = firebase.auth();
+export const fire = firebase;
+// export const auth = firebase.auth();
+// export default fire;

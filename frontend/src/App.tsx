@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { fire } from "./fire";
-
 import "./App.css";
 import Login from "./components/sessions/Login";
 import ListAllNumbers from "./components/phonebook/ListAllNumbers";
+import AddNumber from "./components/phonebook/AddNumber";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,10 +13,11 @@ function App() {
     return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
   });
 
-  console.log("logged in?", isLoggedIn);
   const signOut = () => {
     fire.auth().signOut();
   };
+
+  console.log("logged in?", isLoggedIn);
   return (
     <div className="App">
       <Router>
@@ -31,6 +32,7 @@ function App() {
             <p>You are loggged in!!!</p>
             <button onClick={signOut}>Sign out</button>
             <Routes>
+              <Route path="/add-number" element={<AddNumber />} />
               <Route path="/" element={<ListAllNumbers />} />
             </Routes>
           </>

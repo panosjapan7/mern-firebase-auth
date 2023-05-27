@@ -4,6 +4,7 @@ import { fire } from "./fire";
 
 import "./App.css";
 import Login from "./components/sessions/Login";
+import ListAllNumbers from "./components/phonebook/ListAllNumbers";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,9 @@ function App() {
           <>
             <p>You are loggged in!!!</p>
             <button onClick={signOut}>Sign out</button>
+            <Routes>
+              <Route path="/" element={<ListAllNumbers />} />
+            </Routes>
           </>
         )}
       </Router>

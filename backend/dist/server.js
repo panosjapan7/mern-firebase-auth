@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const phones_1 = __importDefault(require("./controllers/phones"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const connectMongoDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -30,6 +31,7 @@ const connectMongoDB = () => __awaiter(void 0, void 0, void 0, function* () {
 connectMongoDB();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
+app.use((0, cors_1.default)());
 app.use("/api", phones_1.default);
 app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");

@@ -2,6 +2,7 @@ import express, { Express, Router, Request, Response } from "express";
 import phonesRouter from "./controllers/phones";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ connectMongoDB();
 const app: Express = express();
 const port = process.env.PORT;
 
+app.use(cors());
 app.use("/api", phonesRouter);
 
 app.get("/", (req: Request, res: Response) => {

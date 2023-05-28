@@ -2,16 +2,16 @@ import { Request, Response, NextFunction } from "express";
 import admin from "firebase-admin";
 import path from "path";
 
+interface CustomRequest extends Request {
+  currentUser?: any;
+}
+
 const firebaseServiceAccountPath = path.join(
   __dirname,
   "../firebaseServiceAccount.json"
 );
 
 const firebaseServiceAccount = require(firebaseServiceAccountPath);
-
-interface CustomRequest extends Request {
-  currentUser?: any;
-}
 
 admin.initializeApp({
   credential: admin.credential.cert(firebaseServiceAccount),

@@ -6,6 +6,11 @@ phonesRouter.get("/", (req, res) => {
     return res.send("Hi from within the phones router GET");
 });
 phonesRouter.post("/", (req, res) => {
-    return res.send("Hi from within the phones router POST");
+    const auth = req.currentUser;
+    if (auth) {
+        console.log("User Authenticated!", auth);
+        return res.send("Hi from within the phones router POST");
+    }
+    return res.status(403).send("Not authorized");
 });
 exports.default = phonesRouter;

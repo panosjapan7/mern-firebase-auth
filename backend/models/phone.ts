@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
 
+export interface IPhone extends mongoose.Document {
+  name: string;
+  number: string;
+}
+
 const phoneSchema = new mongoose.Schema({
   name: String,
   number: String,
@@ -13,4 +18,4 @@ phoneSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Phone", phoneSchema);
+module.exports = mongoose.model<IPhone>("Phone", phoneSchema);

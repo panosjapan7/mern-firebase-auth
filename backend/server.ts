@@ -1,7 +1,6 @@
 import express, { Express, Router, Request, Response } from "express";
 import phonesRouter from "./controllers/phones";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 import cors from "cors";
 import decodeIDToken from "./authenticateToken";
 import connectMongoDB from "./mongodb/connectMongoDB";

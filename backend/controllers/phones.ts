@@ -1,5 +1,6 @@
 import express, { Router, Request, Response } from "express";
 const Phone = require("../models/phone");
+import { IPhone } from "../models/phone";
 
 interface CustomRequest extends Request {
   currentUser?: any;
@@ -7,8 +8,13 @@ interface CustomRequest extends Request {
 
 const phonesRouter: Router = Router();
 
-phonesRouter.get("/", (req: Request, res: Response) => {
-  return res.send("Hi from within the phones router GET");
+phonesRouter.get("/", async (req: CustomRequest, res: Response) => {
+  const auth = req.currentUser;
+  if (auth) {
+    const phones = await Phone.find({});
+    return res.json(phones.map((phone: IPhone) => phone.toJSON()));
+  }
+  return res.status(403).send("Not Authorized");
 });
 
 phonesRouter.post("/", (req: CustomRequest, res: Response) => {

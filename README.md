@@ -11,7 +11,7 @@ This is a web app boilerplate that allows the user to log in by using Firebase a
 
 #### Frontend
 
-- React, TypeScript, Firebase Auth
+- Firebase Auth, React, TypeScript
 - axios, firebase, react-router-dom,
 
 ## Instructions

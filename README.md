@@ -1,4 +1,20 @@
-### Instructions
+# MERN app with Firebase Authentication
+
+This is a web app boilerplate that allows the user to log in by using Firebase authentication and uses a separate backend server to save data on MongoDB only if the user has been authenticated with Firebase authentication.
+
+## Stack
+
+#### Backend
+
+- Firebase Auth, MongoDB, Node.js, TypeScript
+- concurrently, cors, dotenv, express, firebase-admin, mongoose, nodemon
+
+#### Frontend
+
+- React, TypeScript, Firebase Auth
+- axios, firebase, react-router-dom,
+
+## Instructions
 
 #### Backend
 
@@ -7,8 +23,10 @@
 3. Go to Firebase and generate a Google service account private key json file.
 4. Rename the service account private key json file to `firebaseServiceAccount.json` and move it to the root of _./backend_ folder.
 5. In the `authenticateToken.ts`, line 18, change the `databaseURL` value to include the name of youre database: `"https://YOUR_DATABASE_NAME.firebaseio.com"`
+6. Run the backend with `npm run dev`
 
 #### Frontend
 
 1. cd to _/frontend_ and run `npm install`
-2.
+2. Rename _example.env_ to _.env_ and add your firebaseConfig details
+3. Run the frontend with `npm start`

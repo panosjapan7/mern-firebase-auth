@@ -3,6 +3,7 @@ import phonesRouter from "./controllers/phones";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
+import decodeIDToken from "./authenticateToken";
 
 dotenv.config();
 
@@ -22,6 +23,8 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(cors());
+app.use(decodeIDToken);
+
 app.use("/api", phonesRouter);
 
 app.get("/", (req: Request, res: Response) => {

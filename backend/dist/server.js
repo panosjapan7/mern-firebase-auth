@@ -17,6 +17,7 @@ const phones_1 = __importDefault(require("./controllers/phones"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
+const authenticateToken_1 = __importDefault(require("./authenticateToken"));
 dotenv_1.default.config();
 const connectMongoDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -32,6 +33,7 @@ connectMongoDB();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 app.use((0, cors_1.default)());
+app.use(authenticateToken_1.default);
 app.use("/api", phones_1.default);
 app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");

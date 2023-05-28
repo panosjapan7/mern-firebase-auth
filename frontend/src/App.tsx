@@ -17,7 +17,6 @@ function App() {
     fire.auth().signOut();
   };
 
-  console.log("logged in?", isLoggedIn);
   return (
     <div className="App">
       <Router>

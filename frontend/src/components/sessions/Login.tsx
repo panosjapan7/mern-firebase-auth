@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import { fire } from "../../fire";
 
 const Login = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | undefined>(undefined);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(`submitted email: ${email}, submitted password: ${password}`);
+
     fire
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch((error) => {
-        console.log("Incorrect name or password");
+        setError("Incorrect email or password");
       });
   };
+
   return (
     <div>
       <h2>Login</h2>
@@ -35,6 +37,7 @@ const Login = () => {
         <br />
         <button type="submit">Sign in</button>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };

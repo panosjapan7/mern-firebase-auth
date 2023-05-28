@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { addToPhonebook } from "../../services/phonebookServices";
 
 const AddNumber = () => {
   const [name, setName] = useState("");
@@ -7,8 +8,11 @@ const AddNumber = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(`submitted: ${name} - ${phone}`);
+    if (name && phone) {
+      addToPhonebook(name, phone);
+    }
   };
+
   return (
     <div>
       <Link to="/">View phonebook</Link>

@@ -1,5 +1,3 @@
-// import firebase from "firebase/app";
-// import "firebase/auth";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
@@ -21,7 +19,4 @@ try {
   }
 }
 
-// const fire = firebase.auth();
 export const fire = firebase;
-// export const auth = firebase.auth();
-// export default fire;

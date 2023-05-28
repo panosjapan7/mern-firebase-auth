@@ -11,8 +11,8 @@ const AddNumber = () => {
     if (name && phone) {
       addToPhonebook(name, phone);
     }
-    console.log(`submitted: ${name} - ${phone}`);
   };
+
   return (
     <div>
       <Link to="/">View phonebook</Link>

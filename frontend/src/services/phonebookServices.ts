@@ -30,3 +30,14 @@ const createFirebaseToken = async () => {
   };
   return payloadHeader;
 };
+
+export const getPhoneBookEntries = async () => {
+  const header = await createFirebaseToken();
+
+  try {
+    const res = await axios.get(url, header);
+    return res.data;
+  } catch (error) {
+    console.log("Error in getPhoneBookEntries: ", error);
+  }
+};

@@ -6,10 +6,12 @@ const AddNumber = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (name && phone) {
-      addToPhonebook(name, phone);
+      await addToPhonebook(name, phone);
+      setName("");
+      setPhone("");
     }
   };
 
@@ -21,6 +23,7 @@ const AddNumber = () => {
         <input
           type="text"
           placeholder="Name"
+          value={name}
           onChange={({ target }) => setName(target.value)}
         />
         <br />
@@ -28,6 +31,7 @@ const AddNumber = () => {
         <input
           type="text"
           placeholder="Phone Number"
+          value={phone}
           onChange={({ target }) => setPhone(target.value)}
         />
         <br />

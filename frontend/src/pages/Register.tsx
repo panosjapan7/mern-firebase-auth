@@ -13,8 +13,6 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  let adminUID = "panos";
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

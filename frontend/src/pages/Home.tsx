@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 import { fire } from "../fire";
 import { User } from "@firebase/auth-types";
 import ListAllNumbers from "../components/phonebook/ListAllNumbers";
-
-// interface HomeProps {
-//   displayName?: string | null | undefined;
-//   signOut?: () => void;
-// }
+import ListAllUsers from "../components/phonebook/ListAllUsers";
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -50,6 +46,7 @@ const Home = () => {
           )}
           <button onClick={signOut}>Sign out</button>
           <ListAllNumbers />
+          <ListAllUsers />
         </>
       )}
     </div>

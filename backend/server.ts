@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import decodeIDToken from "./authenticateToken";
 import connectMongoDB from "./mongodb/connectMongoDB";
+import usersRouter from "./controllers/users";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(decodeIDToken);
 
 app.use("/api", phonesRouter);
+app.use("/api/users", usersRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");

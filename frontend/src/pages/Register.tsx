@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { fire } from "../fire";
-import { User } from "@firebase/auth-types";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { addUserToMongo } from "../services/userServices";
 
 const Register = () => {
   const { setUser } = useContext(UserContext);
@@ -13,29 +13,31 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Register the user with Firebase authentication
-    let registeredUser: User | null = null;
-
     try {
-      fire
+      const userCredential = await fire
         .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const registeredUser = userCredential.user;
-          const uid = registeredUser?.uid; // Retrieve the UID of the signed-up user
+        .createUserWithEmailAndPassword(email, password);
+      const registeredUser = userCredential.user;
 
-          let firebaseUser = fire.auth().currentUser;
-          return firebaseUser?.updateProfile({
-            displayName: name,
-          });
-        })
-        .then(() => {
-          setUser(registeredUser);
-          navigate("/");
-        });
+      const firebaseUser = fire.auth().currentUser;
+      await firebaseUser?.updateProfile({
+        displayName: name,
+      });
+
+      addUserToMongo(
+        registeredUser?.uid,
+        registeredUser?.email!,
+        registeredUser?.displayName!,
+        ["user"],
+        registeredUser?.metadata.creationTime!
+      );
+
+      setUser(registeredUser);
+      navigate("/");
     } catch (error) {
       setError("Error registering the user");
       console.log("Registration error: ", error);

@@ -31,7 +31,6 @@ const Home = () => {
     return <p>Loading...</p>;
   }
 
-  console.log("user: ", user);
   return (
     <div>
       <h1>Home</h1>
@@ -48,7 +47,9 @@ const Home = () => {
         </>
       ) : (
         <>
-          {/* <p>{`You are loggged in, ${user._delegate.displayName}!!!`}</p> */}
+          {loggedUser && (
+            <p>{`You are loggged in, ${loggedUser.displayName}!`}</p>
+          )}
           <button onClick={signOut}>Sign out</button>
           <ListAllNumbers />
         </>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getUsersFromMongo } from "../../services/userServices";
-import { Link } from "react-router-dom";
 
 interface UserEntry {
   uid: string;

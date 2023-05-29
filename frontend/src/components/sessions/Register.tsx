@@ -42,8 +42,6 @@ const Register = () => {
           firebaseUser?.updateProfile({
             displayName: name,
           });
-
-          console.log("User registered with default role: ", user);
         });
       navigate("/");
     } catch (error) {

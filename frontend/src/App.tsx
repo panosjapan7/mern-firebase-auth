@@ -1,41 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { fire } from "./fire";
 import "./App.css";
-import Login from "./components/sessions/Login";
-import ListAllNumbers from "./components/phonebook/ListAllNumbers";
+import Login from "./pages/Login";
 import AddNumber from "./components/phonebook/AddNumber";
+import Register from "./pages/Register";
+import { UserContext } from "./context/UserContext";
+import Home from "./pages/Home";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  fire.auth().onAuthStateChanged((user) => {
-    return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
-  });
-
-  const signOut = () => {
-    fire.auth().signOut();
-  };
+  const { user, setUser } = useContext(UserContext);
 
   return (
     <div className="App">
       <Router>
-        {!isLoggedIn ? (
-          <>
-            <Routes>
-              <Route path="/" element={<Login />} />
-            </Routes>
-          </>
-        ) : (
-          <>
-            <p>You are loggged in!!!</p>
-            <button onClick={signOut}>Sign out</button>
-            <Routes>
-              <Route path="/add-number" element={<AddNumber />} />
-              <Route path="/" element={<ListAllNumbers />} />
-            </Routes>
-          </>
-        )}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/add-number" element={<AddNumber />} />
+        </Routes>
       </Router>
     </div>
   );

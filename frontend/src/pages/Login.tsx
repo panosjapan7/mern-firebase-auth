@@ -1,20 +1,33 @@
-import React, { useState } from "react";
-import { fire } from "../../fire";
+import React, { useState, useContext } from "react";
+import { fire } from "../fire";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
+  const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | undefined>(undefined);
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    fire
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => {
-        setError("Incorrect email or password");
-      });
+    try {
+      fire
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          setUser(user);
+        });
+
+      navigate("/");
+    } catch (error) {
+      setError("Incorrect email or password");
+      console.log("Login error: ", error);
+    }
   };
 
   return (

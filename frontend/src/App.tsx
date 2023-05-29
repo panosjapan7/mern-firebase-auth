@@ -10,8 +10,6 @@ import Home from "./pages/Home";
 function App() {
   const { user, setUser } = useContext(UserContext);
 
-  console.log("user: ", user);
-
   return (
     <div className="App">
       <Router>

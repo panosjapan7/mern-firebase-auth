@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { fire } from "../fire";
+import { User } from "@firebase/auth-types";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -18,21 +19,25 @@ const Register = () => {
     e.preventDefault();
 
     // Register the user with Firebase authentication
+    let registeredUser: User | null = null;
+
     try {
       fire
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-          const user = userCredential.user;
-          const uid = user?.uid; // Retrieve the UID of the signed-up user
+          const registeredUser = userCredential.user;
+          const uid = registeredUser?.uid; // Retrieve the UID of the signed-up user
 
           let firebaseUser = fire.auth().currentUser;
-          firebaseUser?.updateProfile({
+          return firebaseUser?.updateProfile({
             displayName: name,
           });
-          setUser(user);
+        })
+        .then(() => {
+          setUser(registeredUser);
+          navigate("/");
         });
-      navigate("/");
     } catch (error) {
       setError("Error registering the user");
       console.log("Registration error: ", error);

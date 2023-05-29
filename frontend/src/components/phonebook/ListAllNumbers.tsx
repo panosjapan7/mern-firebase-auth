@@ -30,7 +30,14 @@ const ListAllNumbers = () => {
       <Link to="/add-number">Add number</Link>
       <h2>Phone Numbers</h2>
 
-      <table>
+      <table
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 5,
+        }}
+      >
         <thead>
           <tr>
             <th>Name</th>

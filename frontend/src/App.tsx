@@ -3,14 +3,15 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { fire } from "./fire";
 import { User } from "@firebase/auth-types";
 import "./App.css";
-import Login from "./components/sessions/Login";
+import Login from "./pages/Login";
 import ListAllNumbers from "./components/phonebook/ListAllNumbers";
 import AddNumber from "./components/phonebook/AddNumber";
-import Register from "./components/sessions/Register";
+import Register from "./pages/Register";
 import { UserProvider } from "./context/UserContext";
 import { UserContext } from "./context/UserContext";
 
 function App() {
+  const { user, setUser } = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,34 +31,34 @@ function App() {
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
   return (
     <div className="App">
+      {user !== null ? <p>user has value</p> : <p>user must be null</p>}
       <Router>
-        <UserProvider>
-          {!isLoggedIn ? (
-            <>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-              </Routes>
-              <div>
-                <br />
-                <br />
-                <Link to="/login">Login</Link>
-                <br />
-                <br />
-                <Link to="/register">Register</Link>
-              </div>
-            </>
-          ) : (
-            <>
-              <AuthenticatedContent
-                displayName={loggedUser?.displayName}
-                signOut={signOut}
-              />
-            </>
-          )}
-        </UserProvider>
+        {!isLoggedIn ? (
+          <>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+            <div>
+              <br />
+              <br />
+              <Link to="/login">Login</Link>
+              <br />
+              <br />
+              <Link to="/register">Register</Link>
+            </div>
+          </>
+        ) : (
+          <>
+            <AuthenticatedContent
+              displayName={loggedUser?.displayName}
+              signOut={signOut}
+            />
+          </>
+        )}
       </Router>
     </div>
   );
@@ -76,7 +77,7 @@ function AuthenticatedContent({
   console.log("user: ", user);
   return (
     <>
-      <p>{`You are loggged in, ${user._delegate.displayName}!!!`}</p>
+      {/* <p>{`You are loggged in, ${user._delegate.displayName}!!!`}</p> */}
       <button onClick={signOut}>Sign out</button>
       <Routes>
         <Route path="/add-number" element={<AddNumber />} />

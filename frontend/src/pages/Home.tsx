@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { fire } from "../fire";
 import { User } from "@firebase/auth-types";
-import { UserContext } from "../context/UserContext";
 import ListAllNumbers from "../components/phonebook/ListAllNumbers";
 
 // interface HomeProps {
@@ -11,7 +10,6 @@ import ListAllNumbers from "../components/phonebook/ListAllNumbers";
 // }
 
 const Home = () => {
-  const { user, setUser } = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { fire } from "../../fire";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Register = () => {
+  const { setUser } = useContext(UserContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,27 +23,14 @@ const Register = () => {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-          // Add custom logic to assign a default role to the user
           const user = userCredential.user;
           const uid = user?.uid; // Retrieve the UID of the signed-up user
-
-          let role = "user"; // Set default role
-
-          if (uid === adminUID) {
-            role = "admin";
-          } else {
-            role = "user";
-          }
-
-          const customClaims = {
-            role: role,
-            displayName: name,
-          };
 
           let firebaseUser = fire.auth().currentUser;
           firebaseUser?.updateProfile({
             displayName: name,
           });
+          setUser(user);
         });
       navigate("/");
     } catch (error) {

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { fire } from "../../fire";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Login = () => {
+  const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | undefined>(undefined);
@@ -13,7 +15,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      fire.auth().signInWithEmailAndPassword(email, password);
+      fire
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          setUser(user);
+        });
 
       navigate("/");
     } catch (error) {

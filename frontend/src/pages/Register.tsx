@@ -1,58 +1,79 @@
-import React, { useState, useContext } from "react";
-import { fire } from "../../fire";
+import React, { useContext, useState } from "react";
+import { fire } from "../fire";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../context/UserContext";
 
-const Login = () => {
+const Register = () => {
   const { setUser } = useContext(UserContext);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | undefined>(undefined);
 
   const navigate = useNavigate();
 
+  let adminUID = "panos";
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Register the user with Firebase authentication
     try {
       fire
         .auth()
-        .signInWithEmailAndPassword(email, password)
+        .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          const uid = user?.uid; // Retrieve the UID of the signed-up user
+
+          let firebaseUser = fire.auth().currentUser;
+          firebaseUser?.updateProfile({
+            displayName: name,
+          });
           setUser(user);
         });
-
       navigate("/");
     } catch (error) {
-      setError("Incorrect email or password");
-      console.log("Login error: ", error);
+      setError("Error registering the user");
+      console.log("Registration error: ", error);
     }
   };
-
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          placeholder="Name"
+          value={name}
+          onChange={({ target }) => setName(target.value)}
+          required={true}
+        />
+        <br />
+        <br />
+        <input
+          type="email"
           placeholder="Email"
+          value={email}
           onChange={({ target }) => setEmail(target.value)}
+          required={true}
         />
         <br />
         <br />
         <input
           type="password"
           placeholder="Password"
+          value={password}
           onChange={({ target }) => setPassword(target.value)}
+          required={true}
         />
         <br />
         <br />
-        <button type="submit">Sign in</button>
+        <button type="submit">Register</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
 
-export default Login;
+export default Register;

@@ -4,7 +4,7 @@ This is a web app boilerplate that allows the user to log in by using Firebase a
 
 It uses a separate backend server to save data on MongoDB only if the user has been authenticated with Firebase authentication.
 
-It also saves user entries to MongoDB which allows us to add user roles to a user that is saved on Firebase.
+When a user registers or logs in with Google OAuth for the first time a user entry on MongoDB is created that includes among other properties a default "user" role.
 
 ## Stack
 

@@ -3,6 +3,7 @@ import { fire } from "../fire";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import GoogleOAuth from "../components/GoogleOAuth";
+import FacebookOAuth from "../components/FacebookOAuth";
 
 const Login = () => {
   const { setUser } = useContext(UserContext);
@@ -54,6 +55,7 @@ const Login = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div>
         <GoogleOAuth />
+        <FacebookOAuth />
       </div>
     </div>
   );

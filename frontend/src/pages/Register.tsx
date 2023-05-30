@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { addUserToMongo } from "../services/userServices";
 import GoogleOAuth from "../components/GoogleOAuth";
+import FacebookOAuth from "../components/FacebookOAuth";
 
 const Register = () => {
   const { setUser } = useContext(UserContext);
@@ -80,6 +81,7 @@ const Register = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div>
         <GoogleOAuth />
+        <FacebookOAuth />
       </div>
     </div>
   );

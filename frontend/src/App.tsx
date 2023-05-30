@@ -6,6 +6,7 @@ import AddNumber from "./components/phonebook/AddNumber";
 import Register from "./pages/Register";
 import { UserContext } from "./context/UserContext";
 import Home from "./pages/Home";
+import ProtectedPage from "./pages/ProtectedPage";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/add-number" element={<AddNumber />} />
+          <Route path="/protected-page" element={<ProtectedPage />} />
         </Routes>
       </Router>
     </div>

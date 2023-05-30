@@ -65,3 +65,14 @@ export const getUserFromMongo = async (uid: string) => {
     return null;
   }
 };
+
+export const getUserRolesFromMongo = async (uid: string) => {
+  try {
+    const user = await getUserFromMongo(uid);
+    if (user) {
+      return user.roles;
+    }
+  } catch (error) {
+    console.log("Error from getUserRoleFromMongo: ", error);
+  }
+};

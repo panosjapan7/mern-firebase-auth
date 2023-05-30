@@ -3,6 +3,7 @@ import { fire } from "../fire";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { addUserToMongo } from "../services/userServices";
+import GoogleOAuth from "../components/GoogleOAuth";
 
 const Register = () => {
   const { setUser } = useContext(UserContext);
@@ -77,6 +78,9 @@ const Register = () => {
         <button type="submit">Register</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      <div>
+        <GoogleOAuth />
+      </div>
     </div>
   );
 };

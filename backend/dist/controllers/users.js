@@ -19,8 +19,26 @@ usersRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return res.json(users.map((user) => user.toJSON()));
     }
     return res.status(403).send("Not Authorized");
-    {
+}));
+usersRouter.get("/:uid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const auth = req.currentUser;
+    if (auth) {
+        const uid = req.params.uid;
+        try {
+            const user = yield User.findOne({ uid });
+            if (user) {
+                return res.json(user.toJSON());
+            }
+            else {
+                return res.status(404).json({ message: "User not found" });
+            }
+        }
+        catch (error) {
+            console.log("Error retrieving user from /:uid:", error);
+            return res.status(500).json({ message: "Internal server error" });
+        }
     }
+    return res.status(403).send("Not Authorized");
 }));
 usersRouter.post("/", (req, res) => {
     const auth = req.currentUser;

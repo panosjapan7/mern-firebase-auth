@@ -19,6 +19,7 @@ app.use(decodeIDToken);
 
 app.use("/api", phonesRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/users/:uid", usersRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");

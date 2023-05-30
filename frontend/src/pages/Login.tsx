@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { fire } from "../fire";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import GoogleOAuth from "../components/GoogleOAuth";
 
 const Login = () => {
   const { setUser } = useContext(UserContext);
@@ -51,6 +52,9 @@ const Login = () => {
         <button type="submit">Sign in</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      <div>
+        <GoogleOAuth />
+      </div>
     </div>
   );
 };

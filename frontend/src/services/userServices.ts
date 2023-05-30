@@ -51,3 +51,17 @@ export const getUsersFromMongo = async () => {
     console.log("Error in getUsersFromMongo: ", error);
   }
 };
+
+export const getUserFromMongo = async (uid: string) => {
+  const header = await createFirebaseToken();
+  try {
+    const res = await axios.get(`${url}/${uid}`, header);
+    return res.data;
+  } catch (error) {
+    console.log(
+      "Error from getUserFromMongo(): User uid not found in MongoDB: ",
+      error
+    );
+    return null;
+  }
+};

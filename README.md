@@ -1,6 +1,10 @@
 # MERN app with Firebase Authentication
 
-This is a web app boilerplate that allows the user to log in by using Firebase authentication and uses a separate backend server to save data on MongoDB only if the user has been authenticated with Firebase authentication.
+This is a web app boilerplate that allows the user to log in by using Firebase authentication with email/password or Google OAuth.
+
+It uses a separate backend server to save data on MongoDB only if the user has been authenticated with Firebase authentication.
+
+It also saves user entries to MongoDB which allows us to add user roles to a user that is saved on Firebase.
 
 ## Stack
 

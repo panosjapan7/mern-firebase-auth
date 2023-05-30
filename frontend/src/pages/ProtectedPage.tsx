@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { getUserRolesFromMongo } from "../services/userServices";
 import { fire } from "../fire";
 import { User } from "@firebase/auth-types";
 
 const ProtectedPage: React.FC = () => {
+  const navigate = useNavigate();
   const [userRoles, setUserRoles] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
 
@@ -28,12 +30,20 @@ const ProtectedPage: React.FC = () => {
   }, [loggedUser]);
 
   useEffect(() => {
-    fetchUserRoles();
+    if (loggedUser) fetchUserRoles();
   }, [loggedUser, fetchUserRoles]);
+
+  useEffect(() => {
+    if (isLoggedIn && userRoles.length > 0 && !userRoles.includes("admin")) {
+      navigate("/");
+    }
+  }, [isLoggedIn, userRoles, navigate]);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
+  console.log("Run once");
 
   return (
     <div>

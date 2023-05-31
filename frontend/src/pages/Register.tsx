@@ -45,7 +45,7 @@ const Register = () => {
     }
   };
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: 50 }}>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <input

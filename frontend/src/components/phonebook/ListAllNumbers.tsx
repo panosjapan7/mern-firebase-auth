@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { getPhoneBookEntries } from "../../services/phonebookServices";
 
 interface Entry {
@@ -8,7 +7,7 @@ interface Entry {
   id: string;
 }
 
-const ListAllNumbers = () => {
+const ListAllNumbers: React.FC = () => {
   const [entries, setEntries] = useState<Entry[]>();
 
   const fetchEntries = async () => {
@@ -26,8 +25,6 @@ const ListAllNumbers = () => {
 
   return (
     <div>
-      <br />
-      <Link to="/add-number">Add number</Link>
       <h2>All Users Phone Numbers</h2>
 
       <table

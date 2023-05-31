@@ -4,7 +4,6 @@ import { fire } from "../fire";
 import { User } from "@firebase/auth-types";
 import ListAllNumbers from "../components/phonebook/ListAllNumbers";
 import ListAllUsers from "../components/phonebook/ListAllUsers";
-import AddNumber from "../components/phonebook/AddNumber";
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

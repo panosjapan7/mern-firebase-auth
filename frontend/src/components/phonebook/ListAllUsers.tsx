@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getUsersFromMongo } from "../../services/userServices";
 
 interface UserEntry {
+  _id: string;
   uid: string;
   email: string;
   displayName: string;
@@ -46,7 +47,7 @@ const ListAllUsers = () => {
         </thead>
         <tbody>
           {userEntries.map((entry) => (
-            <tr key={entry.uid}>
+            <tr key={entry._id}>
               <td>{entry.displayName}</td>
               <td>{entry.email}</td>
               <td>Role: {entry.roles[0]}</td>

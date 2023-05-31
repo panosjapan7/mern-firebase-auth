@@ -4,9 +4,14 @@ import { addToPhonebook } from "../../services/phonebookServices";
 interface Props {
   uid: string;
   handleEntryAdded: () => void;
+  handleUserEntryAdded: () => void;
 }
 
-const AddNumber: React.FC<Props> = ({ uid, handleEntryAdded }) => {
+const AddNumber: React.FC<Props> = ({
+  uid,
+  handleEntryAdded,
+  handleUserEntryAdded,
+}) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
@@ -17,6 +22,7 @@ const AddNumber: React.FC<Props> = ({ uid, handleEntryAdded }) => {
       setName("");
       setPhone("");
       handleEntryAdded();
+      handleUserEntryAdded();
     }
   };
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { fire } from "../fire";
 
-const url = "http://localhost:3001/api";
+const url = "http://localhost:3001/api/phones";
 
 export const addToPhonebook = async (name: string, number: string) => {
   const header = await createFirebaseToken();

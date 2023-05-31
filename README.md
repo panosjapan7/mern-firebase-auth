@@ -6,6 +6,10 @@ It uses a separate backend server to save data on MongoDB only if the user has b
 
 When a user registers or logs in with Google OAuth for the first time a user entry on MongoDB is created that includes among other properties a default "user" role.
 
+To add an _"admin"_ role you need to edit a current one or add it through MongoDB's UI.
+
+The page **"Admin Page (protected)"** can be viewed only if the logged-in user has an _"admin"_ role; if not, it redirects back to Home page.
+
 ## Stack
 
 #### Backend

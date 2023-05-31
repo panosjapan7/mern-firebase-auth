@@ -17,10 +17,6 @@ const Home = () => {
     return;
   });
 
-  const signOut = () => {
-    fire.auth().signOut();
-  };
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -44,7 +40,6 @@ const Home = () => {
           {loggedUser && (
             <p>{`You are loggged in, ${loggedUser.displayName}!`}</p>
           )}
-          <button onClick={signOut}>Sign out</button>
           <ListAllNumbers />
           <ListAllUsers />
         </>

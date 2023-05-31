@@ -46,7 +46,7 @@ const ProtectedPage: React.FC = () => {
   console.log("Run once");
 
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <h1>ProtectedPage</h1>
       {isLoggedIn && <p>Only logged-in users see this</p>}
 

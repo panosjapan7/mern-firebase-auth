@@ -17,16 +17,12 @@ const Home = () => {
     return;
   });
 
-  const signOut = () => {
-    fire.auth().signOut();
-  };
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: 50 }}>
       <h1>Home</h1>
       {!isLoggedIn ? (
         <>
@@ -44,7 +40,6 @@ const Home = () => {
           {loggedUser && (
             <p>{`You are loggged in, ${loggedUser.displayName}!`}</p>
           )}
-          <button onClick={signOut}>Sign out</button>
           <ListAllNumbers />
           <ListAllUsers />
         </>

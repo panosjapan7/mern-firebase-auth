@@ -46,8 +46,8 @@ const ProtectedPage: React.FC = () => {
   console.log("Run once");
 
   return (
-    <div>
-      <h1>ProtectedPage</h1>
+    <div style={{ textAlign: "center" }}>
+      <h1>Admin Page</h1>
       {isLoggedIn && <p>Only logged-in users see this</p>}
 
       {userRoles.includes("admin") && <p>Only logged-in admins see this</p>}

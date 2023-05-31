@@ -30,7 +30,7 @@ const GoogleOAuth = () => {
 
   return (
     <div>
-      <h4>GoogleOAuth</h4>
+      <h4>Google OAuth</h4>
       <button onClick={handleGoogleLogin}>Login with Google</button>
     </div>
   );

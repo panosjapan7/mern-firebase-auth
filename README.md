@@ -1,14 +1,22 @@
 # MERN app with Firebase Authentication
 
-This is a web app boilerplate that allows the user to log in by using Firebase authentication with email/password or Google OAuth.
+This is a web app boilerplate that allows the user to **register** and **log in** by using **Firebase Authentication** with email/password or **Google OAuth**.
 
-It uses a separate backend server to save data on MongoDB only if the user has been authenticated with Firebase authentication.
+The user can also **reset their password**.
 
-When a user registers or logs in with Google OAuth for the first time a user entry on MongoDB is created that includes among other properties a default "user" role.
+It uses a backend server to save data on **MongoDB** if the user has already been authenticated via **Firebase** authentication.
 
-To add an _"admin"_ role you need to edit a current one or add it through MongoDB's UI.
+When a user registers or logs in with Google OAuth for the first time, a user entry on MongoDB is created that includes among other properties a default **"user"** role.
 
-The page **"Admin Page (protected)"** can be viewed only if the logged-in user has an _"admin"_ role; if not, it redirects back to Home page.
+To add an **"admin"** role you need to do that via MongoDB's UI.
+
+The screen **"Admin Page (protected)"** can be viewed only if the logged-in user has an **"admin"** role; if not, it redirects back to Home page.
+<br/><br/>
+
+**NOTE:** The project has just rudimentary inline styling.
+
+<hr>
+<br/>
 
 ## Stack
 
@@ -21,6 +29,8 @@ The page **"Admin Page (protected)"** can be viewed only if the logged-in user h
 
 - Firebase Auth, React, TypeScript
 - axios, firebase, react-router-dom,
+
+<br/>
 
 ## Instructions
 

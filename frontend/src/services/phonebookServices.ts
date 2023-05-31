@@ -46,3 +46,18 @@ export const getPhoneBookEntries = async () => {
     console.log("Error in getPhoneBookEntries: ", error);
   }
 };
+
+export const getUserPhoneBookeEntries = async (uid: string) => {
+  const header = await createFirebaseToken();
+
+  try {
+    const res = await axios.get(`${url}/${uid}`, header);
+    return res.data;
+  } catch (error) {
+    console.log(
+      "Error from getUserPhoneBookeEntries(): User uid not found in MongoDB: ",
+      error
+    );
+    return null;
+  }
+};

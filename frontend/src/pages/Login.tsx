@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: 50 }}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -52,7 +52,7 @@ const Login = () => {
         <button type="submit">Sign in</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <div>
+      <div style={{ marginTop: 50 }}>
         <GoogleOAuth />
       </div>
     </div>

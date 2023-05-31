@@ -27,7 +27,9 @@ const Header = () => {
       }}
     >
       <div>
-        <Link to="/">HOME</Link>
+        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+          HOME
+        </Link>
       </div>
       <div
         style={{

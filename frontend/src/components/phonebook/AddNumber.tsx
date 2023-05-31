@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { addToPhonebook } from "../../services/phonebookServices";
 
 interface Props {
-  uid?: string;
+  uid: string;
+  handleEntryAdded: () => void;
 }
 
-const AddNumber: React.FC<Props> = ({ uid }) => {
+const AddNumber: React.FC<Props> = ({ uid, handleEntryAdded }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
@@ -15,6 +16,7 @@ const AddNumber: React.FC<Props> = ({ uid }) => {
       await addToPhonebook(name, phone, uid);
       setName("");
       setPhone("");
+      handleEntryAdded();
     }
   };
 

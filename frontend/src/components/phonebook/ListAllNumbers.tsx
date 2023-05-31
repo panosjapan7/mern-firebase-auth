@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   getPhoneBookEntries,
   getUserPhoneBookeEntries,
@@ -24,10 +24,10 @@ const ListAllNumbers: React.FC<Props> = ({ uid }) => {
     setEntries(fetchedEntries);
   };
 
-  const fetchUserEntries = async () => {
+  const fetchUserEntries = useCallback(async () => {
     const fetchedEntries = await getUserPhoneBookeEntries(uid);
     setUserEntries(fetchedEntries);
-  };
+  }, [uid]);
 
   const handleEntryAdded = () => {
     fetchEntries();
@@ -40,7 +40,7 @@ const ListAllNumbers: React.FC<Props> = ({ uid }) => {
   useEffect(() => {
     fetchEntries();
     fetchUserEntries();
-  }, []);
+  }, [fetchUserEntries]);
 
   if (entries === undefined) {
     return null;

@@ -43,8 +43,6 @@ const ProtectedPage: React.FC = () => {
     return <p>Loading...</p>;
   }
 
-  console.log("Run once");
-
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Admin Page</h1>

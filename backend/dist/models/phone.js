@@ -7,6 +7,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const phoneSchema = new mongoose_1.default.Schema({
     name: String,
     number: String,
+    uid: String,
 });
 phoneSchema.set("toJSON", {
     transform: (doc, returnedObject) => {

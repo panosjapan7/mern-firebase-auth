@@ -17,7 +17,8 @@ const port = process.env.PORT;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(authenticateToken_1.default);
-app.use("/api", phones_1.default);
+app.use("/api/phones", phones_1.default);
+app.use("/api/phones/:uid", phones_1.default);
 app.use("/api/users", users_1.default);
 app.use("/api/users/:uid", users_1.default);
 app.get("/", (req, res) => {

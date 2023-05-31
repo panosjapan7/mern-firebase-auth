@@ -49,8 +49,7 @@ const Home = () => {
                   flexWrap: "wrap",
                 }}
               >
-                <AddNumber uid={loggedUser.uid} />
-                <ListAllNumbers />
+                <ListAllNumbers uid={loggedUser.uid} />
                 <ListAllUsers />
               </div>
             </>

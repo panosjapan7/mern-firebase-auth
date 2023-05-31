@@ -20,6 +20,21 @@ phonesRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     return res.status(403).send("Not Authorized");
 }));
+phonesRouter.get("/:uid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const auth = req.currentUser;
+    if (auth) {
+        const uid = req.params.uid;
+        try {
+            const entries = yield Phone.find({ uid: uid });
+            return res.json(entries.map((phone) => phone.toJSON()));
+        }
+        catch (error) {
+            console.log("Error retrieving user from /phones/:uid:", error);
+            return res.status(500).json({ message: "Internal server error" });
+        }
+    }
+    return res.status(403).send("Not Authorized");
+}));
 phonesRouter.post("/", (req, res) => {
     const auth = req.currentUser;
     if (auth) {

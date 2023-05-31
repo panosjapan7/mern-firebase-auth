@@ -5,7 +5,7 @@ import { User } from "@firebase/auth-types";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedUser, setLoggedUser] = useState<User | null>(null);
+  const [, setLoggedUser] = useState<User | null>(null);
 
   fire.auth().onAuthStateChanged((user) => {
     user ? setIsLoggedIn(true) : setIsLoggedIn(false);

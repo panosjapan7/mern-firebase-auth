@@ -18,7 +18,7 @@ const Home = () => {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p style={{ textAlign: "center", marginTop: 50 }}>Loading...</p>;
   }
 
   return (
@@ -38,10 +38,21 @@ const Home = () => {
       ) : (
         <>
           {loggedUser && (
-            <p>{`You are loggged in, ${loggedUser.displayName}!`}</p>
+            <>
+              <p>{`You are loggged in, ${loggedUser.displayName}!`}</p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 50,
+                  flexWrap: "wrap",
+                }}
+              >
+                <ListAllNumbers uid={loggedUser.uid} />
+                <ListAllUsers />
+              </div>
+            </>
           )}
-          <ListAllNumbers />
-          <ListAllUsers />
         </>
       )}
     </div>

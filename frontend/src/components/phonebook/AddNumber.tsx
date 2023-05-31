@@ -1,23 +1,33 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { addToPhonebook } from "../../services/phonebookServices";
 
-const AddNumber = () => {
+interface Props {
+  uid: string;
+  handleEntryAdded: () => void;
+  handleUserEntryAdded: () => void;
+}
+
+const AddNumber: React.FC<Props> = ({
+  uid,
+  handleEntryAdded,
+  handleUserEntryAdded,
+}) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (name && phone) {
-      await addToPhonebook(name, phone);
+    if (name && phone && uid) {
+      await addToPhonebook(name, phone, uid);
       setName("");
       setPhone("");
+      handleEntryAdded();
+      handleUserEntryAdded();
     }
   };
 
   return (
     <div>
-      <Link to="/">View phonebook</Link>
       <h2>Add Number</h2>
       <form onSubmit={handleSubmit}>
         <input

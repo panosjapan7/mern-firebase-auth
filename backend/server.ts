@@ -17,7 +17,8 @@ app.use(cors());
 app.use(express.json());
 app.use(decodeIDToken);
 
-app.use("/api", phonesRouter);
+app.use("/api/phones", phonesRouter);
+app.use("/api/phones/:uid", phonesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/users/:uid", usersRouter);
 

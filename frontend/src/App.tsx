@@ -7,13 +7,15 @@ import Register from "./pages/Register";
 import { UserContext } from "./context/UserContext";
 import Home from "./pages/Home";
 import ProtectedPage from "./pages/ProtectedPage";
+import Header from "./components/Header";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
 
   return (
-    <div className="App">
+    <div>
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

@@ -26,7 +26,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: 50 }}>
       <h1>Home</h1>
       {!isLoggedIn ? (
         <>

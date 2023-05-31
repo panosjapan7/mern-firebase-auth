@@ -4,6 +4,7 @@ import { fire } from "../fire";
 import { User } from "@firebase/auth-types";
 import ListAllNumbers from "../components/phonebook/ListAllNumbers";
 import ListAllUsers from "../components/phonebook/ListAllUsers";
+import AddNumber from "../components/phonebook/AddNumber";
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,7 +19,7 @@ const Home = () => {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p style={{ textAlign: "center", marginTop: 50 }}>Loading...</p>;
   }
 
   return (
@@ -38,10 +39,22 @@ const Home = () => {
       ) : (
         <>
           {loggedUser && (
-            <p>{`You are loggged in, ${loggedUser.displayName}!`}</p>
+            <>
+              <p>{`You are loggged in, ${loggedUser.displayName}!`}</p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 50,
+                  flexWrap: "wrap",
+                }}
+              >
+                <AddNumber uid={loggedUser.uid} />
+                <ListAllNumbers />
+                <ListAllUsers />
+              </div>
+            </>
           )}
-          <ListAllNumbers />
-          <ListAllUsers />
         </>
       )}
     </div>

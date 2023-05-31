@@ -34,7 +34,7 @@ const Header = () => {
       <div
         style={{
           display: "flex",
-          gap: 20,
+          gap: 40,
         }}
       >
         {!isLoggedIn && (
@@ -64,7 +64,7 @@ const Header = () => {
                 to="/protected-page"
                 style={{ textDecoration: "none", color: "black" }}
               >
-                Protected Page
+                Admin Page (protected)
               </Link>
             </div>
             <div>

@@ -3,12 +3,17 @@ import { fire } from "../fire";
 
 const url = "http://localhost:3001/api/phones";
 
-export const addToPhonebook = async (name: string, number: string) => {
+export const addToPhonebook = async (
+  name: string,
+  number: string,
+  uid: string
+) => {
   const header = await createFirebaseToken();
 
   const payload = {
     name,
     number,
+    uid,
   };
   try {
     const res = await axios.post(url, payload, header);

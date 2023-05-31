@@ -28,7 +28,7 @@ const ListAllNumbers = () => {
     <div>
       <br />
       <Link to="/add-number">Add number</Link>
-      <h2>Phone Numbers</h2>
+      <h2>All Users Phone Numbers</h2>
 
       <table
         style={{

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { fire } from "../fire";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import GoogleOAuth from "../components/GoogleOAuth";
 
@@ -54,6 +54,9 @@ const Login = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div style={{ marginTop: 50 }}>
         <GoogleOAuth />
+      </div>
+      <div style={{ marginTop: 50 }}>
+        <Link to="/reset-password">Forgot Password?</Link>
       </div>
     </div>
   );

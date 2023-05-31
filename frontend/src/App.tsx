@@ -8,6 +8,7 @@ import { UserContext } from "./context/UserContext";
 import Home from "./pages/Home";
 import ProtectedPage from "./pages/ProtectedPage";
 import Header from "./components/Header";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/add-number" element={<AddNumber />} />
           <Route path="/protected-page" element={<ProtectedPage />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </Router>
     </div>

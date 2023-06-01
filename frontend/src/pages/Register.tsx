@@ -11,6 +11,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,8 +21,10 @@ const Register = () => {
     // Register the user with Firebase authentication
     try {
       if (password.length < 6) {
+        setPassword("");
         throw new Error("Password should be at least 6 characters long");
       }
+      setIsLoading(true);
 
       const userCredential = await fire
         .auth()
@@ -42,11 +45,15 @@ const Register = () => {
       );
 
       setUser(registeredUser);
+      setEmail("");
+      setPassword("");
       navigate("/");
     } catch (error) {
       const errorMessage = (error as Error).message;
       setError(errorMessage);
       console.log("Registration error: ", error);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -80,7 +87,9 @@ const Register = () => {
         />
         <br />
         <br />
-        <button type="submit">Register</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Registering..." : "Register"}
+        </button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div>

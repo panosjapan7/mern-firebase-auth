@@ -12,18 +12,13 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      fire
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          setUser(user);
-        });
-
+      await fire.auth().signInWithEmailAndPassword(email, password);
+      const user = fire.auth().currentUser;
+      setUser(user);
       navigate("/");
     } catch (error) {
       setError("Incorrect email or password");

@@ -32,6 +32,10 @@ const Register = () => {
       const registeredUser = userCredential.user;
 
       const firebaseUser = fire.auth().currentUser;
+
+      // Send email verification
+      await firebaseUser?.sendEmailVerification();
+
       await firebaseUser?.updateProfile({
         displayName: name,
       });

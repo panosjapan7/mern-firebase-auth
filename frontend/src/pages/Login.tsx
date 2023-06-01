@@ -9,25 +9,24 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setIsLoading(true);
     try {
-      fire
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          setUser(user);
-        });
-
+      await fire.auth().signInWithEmailAndPassword(email, password);
+      const user = fire.auth().currentUser;
+      setUser(user);
       navigate("/");
     } catch (error) {
       setError("Incorrect email or password");
       console.log("Login error: ", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -49,7 +48,9 @@ const Login = () => {
         />
         <br />
         <br />
-        <button type="submit">Sign in</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Logging in..." : "Log in"}
+        </button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div style={{ marginTop: 50 }}>

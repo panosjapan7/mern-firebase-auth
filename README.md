@@ -13,7 +13,13 @@ To add an **"admin"** role you need to do that via MongoDB's UI.
 The screen **"Admin Page (protected)"** can be viewed only if the logged-in user has an **"admin"** role; if not, it redirects back to Home page.
 <br/><br/>
 
-**NOTE:** The project has just rudimentary inline styling.
+**NOTE 1:** The project has just rudimentary inline styling.
+
+**NOTE 2:** To test the backend with Postman, you need to log in and get a token from Firebase by making a POST request to `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=YOUR_WEB_API_KEY`
+
+Then you include the token as a Bearer token in your requests.
+
+(You'll find the Firebase Auth web api key in _Project settings > General_)
 
 <hr>
 <br/>

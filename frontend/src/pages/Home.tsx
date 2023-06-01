@@ -21,8 +21,6 @@ const Home = () => {
     return <p style={{ textAlign: "center", marginTop: 50 }}>Loading...</p>;
   }
 
-  console.log("loggedUser?.emailVerified: ", loggedUser?.emailVerified);
-
   return (
     <div style={{ textAlign: "center", marginTop: 50 }}>
       <h1>Home</h1>

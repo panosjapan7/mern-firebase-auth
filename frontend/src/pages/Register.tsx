@@ -19,6 +19,10 @@ const Register = () => {
 
     // Register the user with Firebase authentication
     try {
+      if (password.length < 6) {
+        throw new Error("Password should be at least 6 characters long");
+      }
+
       const userCredential = await fire
         .auth()
         .createUserWithEmailAndPassword(email, password);
@@ -40,7 +44,8 @@ const Register = () => {
       setUser(registeredUser);
       navigate("/");
     } catch (error) {
-      setError("Error registering the user");
+      const errorMessage = (error as Error).message;
+      setError(errorMessage);
       console.log("Registration error: ", error);
     }
   };

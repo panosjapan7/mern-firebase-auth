@@ -69,7 +69,7 @@ const Header = () => {
             </div>
             <div>
               <p onClick={signOut} style={{ margin: 0, cursor: "pointer" }}>
-                Sign out
+                Log out
               </p>
             </div>
           </>

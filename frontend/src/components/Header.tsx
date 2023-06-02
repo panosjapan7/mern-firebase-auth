@@ -1,7 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { fire } from "../fire";
-import { useState } from "react";
-import { User } from "@firebase/auth-types";
 
 interface Props {
   isLoggedIn: boolean | null;

@@ -1,19 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fire } from "../fire";
 import { useState } from "react";
 import { User } from "@firebase/auth-types";
 
-const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [, setLoggedUser] = useState<User | null>(null);
+interface Props {
+  isLoggedIn: boolean | null;
+}
 
-  fire.auth().onAuthStateChanged((user) => {
-    user ? setIsLoggedIn(true) : setIsLoggedIn(false);
-    setLoggedUser(user);
-  });
-
+const Header: React.FC<Props> = ({ isLoggedIn }) => {
+  const navigate = useNavigate();
   const signOut = () => {
     fire.auth().signOut();
+    navigate("/login");
   };
   return (
     <div
@@ -26,18 +24,21 @@ const Header = () => {
         borderBottom: "1px solid #D3D3D3",
       }}
     >
-      <div>
-        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-          HOME
-        </Link>
-      </div>
+      {isLoggedIn === false ||
+        (isLoggedIn === true && (
+          <div>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              HOME
+            </Link>
+          </div>
+        ))}
       <div
         style={{
           display: "flex",
           gap: 40,
         }}
       >
-        {!isLoggedIn && (
+        {isLoggedIn === false && (
           <>
             <div>
               <Link
@@ -57,7 +58,7 @@ const Header = () => {
             </div>
           </>
         )}
-        {isLoggedIn && (
+        {isLoggedIn === true && (
           <>
             <div>
               <Link

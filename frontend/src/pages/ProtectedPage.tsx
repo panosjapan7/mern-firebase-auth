@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUserRolesFromMongo } from "../services/userServices";
+import { useUserRoles } from "../hooks/useUserRoles";
 import { UserContext } from "../context/UserContext";
 
 interface Props {
@@ -10,23 +10,7 @@ interface Props {
 const ProtectedPage: React.FC<Props> = ({ isLoggedIn }) => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const [userRoles, setUserRoles] = useState<string[]>([]);
-  const [, setError] = useState("");
-
-  const fetchUserRoles = useCallback(async () => {
-    if (user) {
-      try {
-        const roles = await getUserRolesFromMongo(user.uid);
-        setUserRoles(roles);
-      } catch (error) {
-        setError("Error fetching user role");
-      }
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (user) fetchUserRoles();
-  }, [user, fetchUserRoles]);
+  const userRoles = useUserRoles();
 
   useEffect(() => {
     if (isLoggedIn && userRoles.length > 0 && !userRoles.includes("admin")) {
@@ -39,7 +23,7 @@ const ProtectedPage: React.FC<Props> = ({ isLoggedIn }) => {
       <h1>Admin Page</h1>
       {user && <p>Only logged-in users see this</p>}
 
-      {userRoles.includes("admin") && <p>Only logged-in admins see this</p>}
+      {userRoles?.includes("admin") && <p>Only logged-in admins see this</p>}
     </div>
   );
 };

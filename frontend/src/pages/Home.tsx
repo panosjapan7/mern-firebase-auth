@@ -1,30 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { fire } from "../fire";
-import { User } from "@firebase/auth-types";
 import ListAllNumbers from "../components/phonebook/ListAllNumbers";
 import ListAllUsers from "../components/phonebook/ListAllUsers";
+import { UserContext } from "../context/UserContext";
 
-const Home = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedUser, setLoggedUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  fire.auth().onAuthStateChanged((user) => {
-    user ? setIsLoggedIn(true) : setIsLoggedIn(false);
-    setLoggedUser(user);
-    setIsLoading(false);
-    return;
-  });
-
-  if (isLoading) {
-    return <p style={{ textAlign: "center", marginTop: 50 }}>Loading...</p>;
-  }
+const Home: React.FC = () => {
+  const { user } = useContext(UserContext);
 
   return (
     <div style={{ textAlign: "center", marginTop: 50 }}>
       <h1>Home</h1>
-      {!isLoggedIn ? (
+      {!user ? (
         <>
           <div>
             <br />
@@ -37,11 +23,11 @@ const Home = () => {
         </>
       ) : (
         <>
-          {loggedUser && (
+          {user && (
             <>
-              <p>{`You are loggged in, ${loggedUser.displayName}!`}</p>
+              <p>{`You are loggged in, ${user.displayName}!`}</p>
               <p>{`Your email address is: ${
-                loggedUser.emailVerified ? "verified!" : "unverified :("
+                user.emailVerified ? "verified!" : "unverified :("
               }`}</p>
               <div
                 style={{
@@ -51,7 +37,7 @@ const Home = () => {
                   flexWrap: "wrap",
                 }}
               >
-                <ListAllNumbers uid={loggedUser.uid} />
+                <ListAllNumbers uid={user.uid} />
                 <ListAllUsers />
               </div>
             </>

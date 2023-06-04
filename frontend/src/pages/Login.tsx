@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { fire } from "../fire";
+import { User as FirebaseUser } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import GoogleOAuth from "../components/GoogleOAuth";
@@ -20,7 +21,7 @@ const Login = () => {
     try {
       await fire.auth().signInWithEmailAndPassword(email, password);
       const user = fire.auth().currentUser;
-      setUser(user);
+      setUser(user as FirebaseUser);
       navigate("/");
     } catch (error) {
       setError("Incorrect email or password");

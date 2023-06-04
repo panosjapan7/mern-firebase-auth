@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { fire } from "../fire";
+import { User as FirebaseUser } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { addUserToMongo } from "../services/userServices";
@@ -48,7 +49,7 @@ const Register = () => {
         registeredUser?.metadata.creationTime!
       );
 
-      setUser(registeredUser);
+      setUser(registeredUser as FirebaseUser);
       setEmail("");
       setPassword("");
       navigate("/");

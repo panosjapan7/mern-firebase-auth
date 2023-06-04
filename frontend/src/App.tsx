@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { fire } from "./fire";
+import { User as FirebaseUser } from "firebase/auth";
 import "./App.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -19,7 +20,7 @@ function App() {
     const unsubscribe = fire.auth().onAuthStateChanged((user) => {
       if (user) {
         setIsLoggedIn(true);
-        setUser(user);
+        setUser(user as FirebaseUser);
       } else {
         setIsLoggedIn(false);
         setUser(null);

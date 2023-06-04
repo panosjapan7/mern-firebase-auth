@@ -1,9 +1,10 @@
 import express, { Router, Request, Response } from "express";
+import admin from "firebase-admin";
 const Phone = require("../models/phone");
 import { IPhone } from "../models/phone";
 
 interface CustomRequest extends Request {
-  currentUser?: any;
+  currentUser?: admin.auth.DecodedIdToken;
 }
 
 const phonesRouter: Router = Router();

@@ -3,7 +3,7 @@ import admin from "firebase-admin";
 import path from "path";
 
 interface CustomRequest extends Request {
-  currentUser?: any;
+  currentUser?: admin.auth.DecodedIdToken;
 }
 
 const firebaseServiceAccountPath = path.join(

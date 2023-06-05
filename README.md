@@ -1,12 +1,11 @@
 # MERN app with Firebase Authentication
 
-This is a web app boilerplate that allows the user to **register** and **log in** by using **Firebase Authentication** with email/password or **Google OAuth**.
+This is a web app boilerplate that allows the user to **register** and **log in** by using **Firebase Authentication** with **email/password** or **Google OAuth**.
 
 - The user can also **reset their password**.
-- The user receives an email to verify their email address.
-- The app uses a backend server to save data on **MongoDB** if the user has already been authenticated via **Firebase** authentication.
-- When a user registers or logs in with Google OAuth for the first time, a user entry on MongoDB is created that includes among other properties a default **"user"** role.
-- To add an **"admin"** role you need to do that via MongoDB's UI.
+- The user receives an email to **verify their email address**.
+- The app uses a backend server to **create a user entry** on **MongoDB** that includes among other properties a default **"user"** role if the user has been authenticated via **Firebase** authentication.
+- To add an **"admin"** role to a user, you need to manually edit the user entry on MongoDB.
 - The screen **"Admin Page (protected)"** can be viewed only if the logged-in user has an **"admin"** role; if not, it redirects back to Home page.
   <br/><br/>
 
@@ -38,14 +37,18 @@ This is a web app boilerplate that allows the user to **register** and **log in*
 #### Backend
 
 1. cd to _/backend_ and run `npm install`
-2. Rename _example.env_ to _.env_ and add your MongoDB details
-3. Go to Firebase and generate a Google service account private key json file.
-4. Rename the service account private key json file to `firebaseServiceAccount.json` and move it to the root of _./backend_ folder.
-5. In the `authenticateToken.ts`, line 18, change the `databaseURL` value to include the name of youre database: `"https://YOUR_DATABASE_NAME.firebaseio.com"`
+2. Rename _/backend/example.env_ to _.env_ and add your **MongoDB connection string** (something like _mongodb+srv://username:<password>@cluster0.emzwhol.mongodb.net/?retryWrites=true&w=majority_).
+3. Go to Firebase and create a new project.
+   - Enable Sign-in method with **Email/Password (enable Email link too)**.
+   - Enable **Google Sign-in method**.
+   - Generate a new private key .json file (_Project settings > Service accounts_).
+4. Rename the Firebase private key .json file to `firebaseServiceAccount.json` and move it to the root of _./backend_ folder.
+5. In the `authenticateToken.ts`, line 18, change the `databaseURL` value to include the name of your Firebase project name (you'll find the project name in **Project settings > General: Project name**): `"https://YOUR_PROJECT_NAME.firebaseio.com"`
 6. Run the backend with `npm run dev`
 
 #### Frontend
 
 1. cd to _/frontend_ and run `npm install`
-2. Rename _example.env_ to _.env_ and add your firebaseConfig details
-3. Run the frontend with `npm start`
+2. Rename _example.env_ to _.env_
+3. Go to _Firebase Project settings > General_. In **Your apps** section, register a web app. Get the values of the `firebaseConfig` variables and add them to the `frontend/.env`
+4. Run the frontend with `npm start`

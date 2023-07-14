@@ -21,10 +21,9 @@ app.use("/api/phones", phones_1.default);
 app.use("/api/phones/:uid", phones_1.default);
 app.use("/api/users", users_1.default);
 app.use("/api/users/:uid", users_1.default);
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");
 });
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-exports.default = app;

@@ -22,12 +22,10 @@ app.use("/api/phones/:uid", phonesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/users/:uid", usersRouter);
 
-app.get("/api", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-export default app;

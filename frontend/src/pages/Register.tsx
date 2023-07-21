@@ -26,10 +26,10 @@ const Register = () => {
         throw new Error("Password should be at least 6 characters long");
       }
       setIsLoading(true);
-
+      const trimmedEmail = email.trim();
       const userCredential = await fire
         .auth()
-        .createUserWithEmailAndPassword(email, password);
+        .createUserWithEmailAndPassword(trimmedEmail, password);
       const registeredUser = userCredential.user;
 
       const firebaseUser = fire.auth().currentUser;

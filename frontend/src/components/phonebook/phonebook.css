@@ -1,0 +1,22 @@
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+span {
+  font-weight: bold;
+}
+
+thead th {
+  width: 25%;
+}

@@ -25,15 +25,27 @@ const Home: React.FC = () => {
         <>
           {user && (
             <>
-              <p>{`You are loggged in, ${user.displayName}!`}</p>
-              <p>{`Your email address is: ${
-                user.emailVerified ? "verified!" : "unverified :("
-              }`}</p>
+              <p>
+                You are loggged in,
+                <span style={{ fontWeight: "bold" }}> {user.displayName}</span>!
+              </p>
+              <p>
+                Your email address is:{" "}
+                {user.emailVerified ? (
+                  <span style={{ fontWeight: "bold", color: "green" }}>
+                    verified!
+                  </span>
+                ) : (
+                  <span style={{ fontWeight: "bold", color: "red" }}>
+                    unverified :(
+                  </span>
+                )}
+              </p>
               <div
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  gap: 50,
+                  gap: 20,
                   flexWrap: "wrap",
                 }}
               >

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getUsersFromMongo } from "../../services/userServices";
+import "./phonebook.css";
 
 interface UserEntry {
   _id: string;
@@ -25,23 +26,16 @@ const ListAllUsers = () => {
   if (userEntries === undefined) return null;
 
   return (
-    <div>
+    <div style={{ marginBottom: 40 }}>
       <br />
-      <h2>Users on MongoDB</h2>
+      <h2>Registered Users on MongoDB</h2>
 
-      <table
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 5,
-        }}
-      >
+      <table>
         <thead>
           <tr>
-            <th>Display Name /</th>
-            <th>Email /</th>
-            <th>Role /</th>
+            <th>Display Name</th>
+            <th>Email</th>
+            <th>Role</th>
             <th>Created</th>
           </tr>
         </thead>
@@ -50,8 +44,8 @@ const ListAllUsers = () => {
             <tr key={entry._id}>
               <td>{entry.displayName}</td>
               <td>{entry.email}</td>
-              <td>Role: {entry.roles[0]}</td>
-              <td>Created at: {entry.createdAt}</td>
+              <td>{entry.roles[0]}</td>
+              <td>{entry.createdAt}</td>
             </tr>
           ))}
         </tbody>

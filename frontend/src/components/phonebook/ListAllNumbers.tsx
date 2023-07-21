@@ -4,6 +4,7 @@ import {
   getUserPhoneBookeEntries,
 } from "../../services/phonebookServices";
 import AddNumber from "./AddNumber";
+import "./phonebook.css";
 
 interface Props {
   uid: string;
@@ -48,17 +49,10 @@ const ListAllNumbers: React.FC<Props> = ({ uid }) => {
 
   return (
     <div style={{ display: "flex", gap: 50 }}>
-      <div>
-        <h2>All Users Phone Numbers</h2>
+      <div className="table-container">
+        <h2>All Saved Users' Phone Numbers</h2>
 
-        <table
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 5,
-          }}
-        >
+        <table>
           <thead>
             <tr>
               <th>Name</th>
@@ -76,17 +70,10 @@ const ListAllNumbers: React.FC<Props> = ({ uid }) => {
         </table>
       </div>
 
-      <div>
-        <h2>This User's Phone Numbers</h2>
+      <div className="table-container">
+        <h2>This User's Saved Phone Numbers</h2>
 
-        <table
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 5,
-          }}
-        >
+        <table>
           <thead>
             <tr>
               <th>Name</th>

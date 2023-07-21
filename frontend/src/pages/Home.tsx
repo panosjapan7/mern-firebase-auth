@@ -31,9 +31,15 @@ const Home: React.FC = () => {
               </p>
               <p>
                 Your email address is:{" "}
-                <span style={{ fontWeight: "bold" }}>
-                  {user.emailVerified ? "verified!" : "unverified :("}
-                </span>
+                {user.emailVerified ? (
+                  <span style={{ fontWeight: "bold", color: "green" }}>
+                    verified!
+                  </span>
+                ) : (
+                  <span style={{ fontWeight: "bold", color: "red" }}>
+                    unverified :(
+                  </span>
+                )}
               </p>
               <div
                 style={{

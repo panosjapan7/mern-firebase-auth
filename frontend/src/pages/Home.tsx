@@ -45,7 +45,7 @@ const Home: React.FC = () => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  gap: 50,
+                  gap: 20,
                   flexWrap: "wrap",
                 }}
               >

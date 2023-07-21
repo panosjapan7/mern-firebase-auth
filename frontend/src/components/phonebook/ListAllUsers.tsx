@@ -26,7 +26,7 @@ const ListAllUsers = () => {
   if (userEntries === undefined) return null;
 
   return (
-    <div>
+    <div style={{ marginBottom: 40 }}>
       <br />
       <h2>Registered Users on MongoDB</h2>
 

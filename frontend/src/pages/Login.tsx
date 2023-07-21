@@ -19,7 +19,8 @@ const Login = () => {
 
     setIsLoading(true);
     try {
-      await fire.auth().signInWithEmailAndPassword(email, password);
+      const trimmedEmail = email.trim();
+      await fire.auth().signInWithEmailAndPassword(trimmedEmail, password);
       const user = fire.auth().currentUser;
       setUser(user as FirebaseUser);
       navigate("/");
